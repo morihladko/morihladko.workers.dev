@@ -1,118 +1,331 @@
-import { createFileRoute } from '@tanstack/react-router'
-import {
-  Zap,
-  Server,
-  Route as RouteIcon,
-  Shield,
-  Waves,
-  Sparkles,
-} from 'lucide-react'
+import { createFileRoute } from "@tanstack/react-router";
+import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute('/')({ component: App })
+export const Route = createFileRoute("/")({ component: HomePage });
 
-function App() {
-  const features = [
-    {
-      icon: <Zap className="w-12 h-12 text-cyan-400" />,
-      title: 'Powerful Server Functions',
-      description:
-        'Write server-side code that seamlessly integrates with your client components. Type-safe, secure, and simple.',
-    },
-    {
-      icon: <Server className="w-12 h-12 text-cyan-400" />,
-      title: 'Flexible Server Side Rendering',
-      description:
-        'Full-document SSR, streaming, and progressive enhancement out of the box. Control exactly what renders where.',
-    },
-    {
-      icon: <RouteIcon className="w-12 h-12 text-cyan-400" />,
-      title: 'API Routes',
-      description:
-        'Build type-safe API endpoints alongside your application. No separate backend needed.',
-    },
-    {
-      icon: <Shield className="w-12 h-12 text-cyan-400" />,
-      title: 'Strongly Typed Everything',
-      description:
-        'End-to-end type safety from server to client. Catch errors before they reach production.',
-    },
-    {
-      icon: <Waves className="w-12 h-12 text-cyan-400" />,
-      title: 'Full Streaming Support',
-      description:
-        'Stream data from server to client progressively. Perfect for AI applications and real-time updates.',
-    },
-    {
-      icon: <Sparkles className="w-12 h-12 text-cyan-400" />,
-      title: 'Next Generation Ready',
-      description:
-        'Built from the ground up for modern web applications. Deploy anywhere JavaScript runs.',
-    },
-  ]
+function HomePage() {
+	return (
+		<main className="max-w-6xl mx-auto px-6 py-12">
+			{/* Bento Grid Container */}
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-phosphor-dim">
+				<HeroCell />
+				<StatsCell />
+				<SkillsCell />
+				<TechStackCell />
+				<ExperienceCell />
+			</div>
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-      <section className="relative py-20 px-6 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10"></div>
-        <div className="relative max-w-5xl mx-auto">
-          <div className="flex items-center justify-center gap-6 mb-6">
-            <img
-              src="/tanstack-circle-logo.png"
-              alt="TanStack Logo"
-              className="w-24 h-24 md:w-32 md:h-32"
-            />
-            <h1 className="text-6xl md:text-7xl font-black text-white [letter-spacing:-0.08em]">
-              <span className="text-gray-300">TANSTACK</span>{' '}
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                START
-              </span>
-            </h1>
-          </div>
-          <p className="text-2xl md:text-3xl text-gray-300 mb-4 font-light">
-            The framework for next generation AI applications
-          </p>
-          <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-8">
-            Full-stack framework powered by TanStack Router for React and Solid.
-            Build modern applications with server functions, streaming, and type
-            safety.
-          </p>
-          <div className="flex flex-col items-center gap-4">
-            <a
-              href="https://tanstack.com/start"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-cyan-500/50"
-            >
-              Documentation
-            </a>
-            <p className="text-gray-400 text-sm mt-2">
-              Begin your TanStack Start journey by editing{' '}
-              <code className="px-2 py-1 bg-slate-700 rounded text-cyan-400">
-                /src/routes/index.tsx
-              </code>
-            </p>
-          </div>
-        </div>
-      </section>
+			<footer className="mt-px bg-void border-t border-phosphor-dim pt-6 text-center">
+				<p className="text-xs font-display text-phosphor-dim tracking-wider">
+					{"// SYS.COPYRIGHT © 2026 PETER MORIHLADKO"}
+				</p>
+			</footer>
+		</main>
+	);
+}
 
-      <section className="py-16 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10"
-            >
-              <div className="mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold text-white mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-    </div>
-  )
+/* ===== BENTO CELL COMPONENT ===== */
+
+interface BentoCellProps {
+	children: React.ReactNode;
+	className?: string;
+	span?: "1" | "2" | "3" | "row";
+}
+
+function BentoCell({ children, className, span = "1" }: BentoCellProps) {
+	const spanClasses = {
+		"1": "",
+		"2": "md:col-span-2",
+		"3": "lg:col-span-3",
+		row: "md:col-span-2 lg:col-span-3",
+	};
+
+	return (
+		<div
+			className={cn(
+				"bg-void p-6 relative bracket-corners bracket-corners-dim",
+				spanClasses[span],
+				className,
+			)}
+		>
+			{children}
+		</div>
+	);
+}
+
+/* ===== SECTION HEADER ===== */
+
+function SectionHeader({ children }: { children: string }) {
+	return (
+		<h2 className="font-display text-xs tracking-wider text-phosphor-dim mb-4 flex items-center gap-2">
+			<span className="text-phosphor">{"//"}</span>
+			<span>{children}</span>
+		</h2>
+	);
+}
+
+/* ===== HERO CELL ===== */
+
+function HeroCell() {
+	return (
+		<BentoCell span="2" className="py-12">
+			{/* Crosshair accent */}
+			<span className="absolute top-4 left-4 text-phosphor-dim text-xs font-display">
+				+
+			</span>
+			<span className="absolute top-4 right-4 text-phosphor-dim text-xs font-display">
+				01.PROFILE
+			</span>
+
+			<h1 className="font-display text-4xl md:text-5xl text-glow-lg mb-4 tracking-wider">
+				PETER MORIHLADKO
+			</h1>
+			<p className="text-phosphor-dim text-lg max-w-xl leading-relaxed">
+				Software Engineer based in Czechia/Slovakia. Building robust systems,
+				exploring new technologies, and crafting solutions that work.
+			</p>
+
+			{/* Status indicator */}
+			<div className="mt-8 flex items-center gap-3 text-xs font-display">
+				<span className="w-2 h-2 bg-phosphor box-glow animate-pulse" />
+				<span className="text-phosphor-dim">SYSTEMS OPERATIONAL</span>
+				<span className="text-phosphor-dim ml-4">LOC: CZ/SK</span>
+			</div>
+		</BentoCell>
+	);
+}
+
+/* ===== STATS CELL ===== */
+
+function StatsCell() {
+	return (
+		<BentoCell>
+			<SectionHeader>TELEMETRY</SectionHeader>
+
+			<div className="grid grid-cols-2 gap-3">
+				<StatBlock label="YRS EXP" value="17+" />
+				<StatBlock label="STACK" value="FULL" />
+				<StatBlock label="LANGS" value="5+" />
+				<StatBlock label="STATUS" value="OPEN" highlight />
+			</div>
+		</BentoCell>
+	);
+}
+
+function StatBlock({
+	label,
+	value,
+	highlight,
+}: {
+	label: string;
+	value: string;
+	highlight?: boolean;
+}) {
+	return (
+		<div
+			className={cn(
+				"border border-phosphor-dim p-3 text-center",
+				highlight && "border-phosphor box-glow",
+			)}
+		>
+			<div
+				className={cn(
+					"font-display text-xl",
+					highlight ? "text-glow-md" : "text-glow",
+				)}
+			>
+				{value}
+			</div>
+			<div className="text-[10px] text-phosphor-dim font-display mt-1 tracking-wider">
+				{label}
+			</div>
+		</div>
+	);
+}
+
+/* ===== SKILLS CELL ===== */
+
+function SkillsCell() {
+	const skills = [
+		{ name: "TYPESCRIPT", level: 90 },
+		{ name: "PYTHON", level: 90 },
+		{ name: "REACT", level: 85 },
+		{ name: "BACKEND", level: 85 },
+		{ name: "INFRA", level: 75 },
+	];
+
+	return (
+		<BentoCell>
+			<SectionHeader>CORE SYSTEMS</SectionHeader>
+
+			<div className="space-y-3">
+				{skills.map((skill) => (
+					<SkillBar key={skill.name} {...skill} />
+				))}
+			</div>
+		</BentoCell>
+	);
+}
+
+function SkillBar({ name, level }: { name: string; level: number }) {
+	const segments = 10;
+	const filledSegments = Math.round((level / 100) * segments);
+
+	return (
+		<div className="space-y-1">
+			<div className="flex justify-between text-xs font-display">
+				<span>{name}</span>
+				<span className="text-phosphor-dim">{level}%</span>
+			</div>
+			<div className="flex gap-0.5">
+				{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
+					<div
+						key={`seg-${i}`}
+						className={cn(
+							"h-2 flex-1 transition-all",
+							i < filledSegments
+								? "bg-phosphor box-glow"
+								: "bg-phosphor-dim/20",
+						)}
+					/>
+				))}
+			</div>
+		</div>
+	);
+}
+
+/* ===== TECH STACK CELL ===== */
+
+function TechStackCell() {
+	const stacks = [
+		{ category: "LANG", items: "TypeScript, Python, PHP, SQL" },
+		{ category: "FRONT", items: "React, React Native, Angular" },
+		{ category: "BACK", items: "FastAPI, Flask, Node.js, Django" },
+		{ category: "DATA", items: "PostgreSQL, MySQL, Redis" },
+		{ category: "INFRA", items: "GCloud, Docker, Ansible, CF" },
+	];
+
+	return (
+		<BentoCell>
+			<SectionHeader>TECH MATRIX</SectionHeader>
+
+			<div className="space-y-2 text-sm">
+				{stacks.map((stack) => (
+					<div key={stack.category} className="flex gap-2">
+						<span className="text-phosphor font-display text-xs w-12 shrink-0">
+							{stack.category}
+						</span>
+						<span className="text-phosphor-dim">{stack.items}</span>
+					</div>
+				))}
+			</div>
+		</BentoCell>
+	);
+}
+
+/* ===== EXPERIENCE CELL ===== */
+
+function ExperienceCell() {
+	const experiences = [
+		{
+			title: "PYTHON BACKEND DEVELOPER",
+			company: "MEME.COM",
+			location: "PRAGUE / REMOTE",
+			period: "2022-2025",
+			highlights: [
+				"Multi-chain indexers and analytics services for NFT/token data",
+				"Flask/FastAPI backend on Google Cloud infrastructure",
+				"PostgreSQL, Redis, Docker Swarm, Cloudflare CDN stack",
+			],
+		},
+		{
+			title: "MOBILE APPLICATION DEVELOPER",
+			company: "INTELINO",
+			location: "CA / REMOTE",
+			period: "2021-2022",
+			highlights: [
+				"React Native/Expo iOS app with TypeScript",
+				"Bluetooth LE communication with robotic smart trains",
+			],
+		},
+		{
+			title: "FRONTEND / PYTHON DEVELOPER",
+			company: "OZOBOT",
+			location: "PRAGUE / HYBRID",
+			period: "2017-2021",
+			highlights: [
+				"Angular web frontends for educational robotics",
+				"GitHub CI/CD pipelines for Google Cloud deployments",
+				"Python tools for Bluetooth LE robot communication",
+			],
+		},
+		{
+			title: "FRONTEND / BACKEND DEVELOPER",
+			company: "ATTEQ SRO",
+			location: "PRAGUE / HYBRID",
+			period: "2007-2016",
+			highlights: [
+				"Full-stack PHP, Python, Django, JavaScript development",
+				"High-traffic online magazines for Zoznam.sk network",
+			],
+		},
+	];
+
+	return (
+		<BentoCell span="row">
+			<SectionHeader>EXPERIENCE LOG</SectionHeader>
+
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+				{experiences.map((exp, idx) => (
+					<ExperienceEntry key={exp.company} {...exp} index={idx} />
+				))}
+			</div>
+		</BentoCell>
+	);
+}
+
+function ExperienceEntry({
+	title,
+	company,
+	location,
+	period,
+	highlights,
+	index,
+}: {
+	title: string;
+	company: string;
+	location: string;
+	period: string;
+	highlights: string[];
+	index: number;
+}) {
+	return (
+		<article className="border-l border-phosphor-dim pl-4 relative">
+			{/* Timeline dot */}
+			<span className="absolute -left-[3px] top-0 w-1.5 h-1.5 bg-phosphor box-glow" />
+
+			{/* Index marker */}
+			<span className="absolute -left-8 top-0 text-[10px] font-display text-phosphor-dim">
+				{String(index + 1).padStart(2, "0")}
+			</span>
+
+			<header className="mb-2">
+				<h3 className="font-display text-sm tracking-wider text-glow">
+					{title}
+				</h3>
+				<p className="text-[10px] text-phosphor-dim font-display tracking-wider mt-1">
+					{company} {"//"} {location} {"//"} {period}
+				</p>
+			</header>
+
+			<ul className="space-y-1 text-sm text-phosphor-dim">
+				{highlights.map((item) => (
+					<li key={item} className="flex items-start gap-2">
+						<span className="text-phosphor text-xs mt-0.5">{">"}</span>
+						<span>{item}</span>
+					</li>
+				))}
+			</ul>
+		</article>
+	);
 }

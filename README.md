@@ -301,9 +301,92 @@ Once we've created the derived store we can use it in the `App` component just l
 
 You can find out everything you need to know on how to use TanStack Store in the [TanStack Store documentation](https://tanstack.com/store/latest).
 
-# Demo files
+# Deploy
 
-Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
+This app is configured to deploy to [Cloudflare Workers](https://workers.cloudflare.com/) with full SSR support on the free tier.
+
+## Prerequisites
+
+1. Create a free [Cloudflare account](https://dash.cloudflare.com/sign-up)
+2. Install Wrangler CLI (included in devDependencies)
+
+## First-time setup
+
+Login to your Cloudflare account:
+
+```bash
+pnpm wrangler login
+```
+
+This opens a browser to authenticate. Once complete, your credentials are stored locally.
+
+## Configuration
+
+The worker is configured in `wrangler.jsonc`:
+
+```jsonc
+{
+  "name": "tanstack-personal-app",  // Your app name
+  "compatibility_date": "2025-09-02",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "@tanstack/react-start/server-entry"
+}
+```
+
+To use a custom domain, add to `wrangler.jsonc`:
+
+```jsonc
+{
+  "routes": [
+    { "pattern": "yourdomain.com", "custom_domain": true }
+  ]
+}
+```
+
+## Deploy
+
+Build and deploy to Cloudflare Workers:
+
+```bash
+pnpm deploy
+```
+
+Your app will be available at `https://<app-name>.<your-subdomain>.workers.dev`.
+
+## Preview deployments
+
+Test before deploying to production:
+
+```bash
+pnpm wrangler deploy --dry-run
+```
+
+## Environment variables
+
+Add secrets via Wrangler:
+
+```bash
+pnpm wrangler secret put SECRET_NAME
+```
+
+Or define non-secret variables in `wrangler.jsonc`:
+
+```jsonc
+{
+  "vars": {
+    "API_URL": "https://api.example.com"
+  }
+}
+```
+
+## Free tier limits
+
+Cloudflare Workers free tier includes:
+- 100,000 requests/day
+- 10ms CPU time per request
+- Unlimited bandwidth
+
+For most personal sites, the free tier is sufficient.
 
 # Learn More
 
