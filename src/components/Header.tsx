@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 export default function Header() {
 	return (
 		<header className="border-b border-phosphor-dim">
-			<div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+			<div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
 				<Link
 					to="/"
 					className="font-display text-lg tracking-widest text-glow hover:text-glow-lg transition-all"
@@ -12,13 +12,13 @@ export default function Header() {
 				</Link>
 
 				<nav>
-					<ul className="flex gap-1 list-none m-0 p-0">
-						<NavItem href="https://github.com/petermorihladko" label="GITHUB" />
+					<ul className="flex flex-wrap gap-1 list-none m-0 p-0 [&>li:first-child>a]:pl-0">
+						<NavItem href="https://github.com/morihladko" label="GITHUB" />
 						<NavItem
-							href="https://linkedin.com/in/petermorihladko"
+							href="https://linkedin.com/in/morihladko"
 							label="LINKEDIN"
 						/>
-						<NavItem href="mailto:hello@morihladko.com" label="EMAIL" />
+						<NavItem href="https://twitter.com/morihladko" label="TWITTER" />
 					</ul>
 				</nav>
 			</div>
@@ -31,7 +31,7 @@ function NavItem({ href, label }: { href: string; label: string }) {
 		<li>
 			<a
 				href={href}
-				className="block px-4 py-2 font-display text-xs tracking-wider border border-transparent hover:border-phosphor-dim hover:text-glow transition-all"
+				className="block px-2 md:px-4 py-2 font-display text-xs tracking-wider border border-transparent hover:border-phosphor-dim hover:text-glow transition-all"
 			>
 				[ {label} ]
 			</a>

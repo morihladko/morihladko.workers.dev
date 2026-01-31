@@ -34,6 +34,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 		links: [
 			{
 				rel: "preload",
+				href: appCss,
+				as: "style",
+			},
+			{
+				rel: "preload",
 				href: "/fonts/DepartureMono-Regular.woff2",
 				as: "font",
 				type: "font/woff2",
@@ -49,10 +54,18 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 	component: RootComponent,
 });
 
+// Critical CSS inlined to prevent render-blocking
+const criticalCss = `
+:root{--void-black:#0d0d0d;--phosphor-amber:#ffb000}
+body{background:#0d0d0d;color:#ffb000;font-family:ui-monospace,monospace;margin:0;min-height:100vh}
+`;
+
 function RootComponent() {
 	return (
 		<html lang="en">
 			<head>
+				{/* biome-ignore lint/security/noDangerouslySetInnerHtml: static critical CSS, not user input */}
+				<style dangerouslySetInnerHTML={{ __html: criticalCss }} />
 				<HeadContent />
 			</head>
 			<body className="min-h-screen bg-void text-phosphor antialiased">
