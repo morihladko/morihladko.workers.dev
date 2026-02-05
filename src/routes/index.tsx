@@ -81,15 +81,16 @@ function HeroCell() {
 				PETER MORIHLADKO
 			</h1>
 			<p className="text-phosphor-dim text-lg max-w-xl leading-relaxed">
-				Software Engineer based in Czechia/Slovakia. Building robust systems,
-				exploring new technologies, and crafting solutions that work.
+				Software Developer. Remote-first. Based in Czechia. Building robust systems, exploring new technologies, crafting code AI can learn from.
 			</p>
 
 			{/* Status indicator */}
 			<div className="mt-8 flex items-center gap-3 text-xs font-display">
 				<span className="w-2 h-2 bg-phosphor box-glow animate-pulse" />
-				<span className="text-phosphor-dim">SYSTEMS OPERATIONAL</span>
-				<span className="text-phosphor-dim ml-4">LOC: CZ/SK</span>
+				<span className="text-phosphor-dim">STATUS: Open for collaboration</span>
+				<span className="painted-emoji bg-phosphor ml-4">🌐</span>
+				<span className="text-phosphor-dim">LOC: Prague</span>
+				<span className="text-phosphor-dim ml-4">AVAILABILITY: Globally</span>
 			</div>
 		</BentoCell>
 	);
@@ -147,11 +148,11 @@ function StatBlock({
 
 function SkillsCell() {
 	const skills = [
-		{ name: "TYPESCRIPT", level: 90 },
 		{ name: "PYTHON", level: 90 },
-		{ name: "REACT", level: 85 },
+		{ name: "TYPESCRIPT", level: 80 },
+		{ name: "FRONTEND", level: 75 },
 		{ name: "BACKEND", level: 85 },
-		{ name: "INFRA", level: 75 },
+		{ name: "INFRA", level: 65 },
 	];
 
 	return (
@@ -198,11 +199,11 @@ function SkillBar({ name, level }: { name: string; level: number }) {
 
 function TechStackCell() {
 	const stacks = [
-		{ category: "LANG", items: "TypeScript, Python, PHP, SQL" },
-		{ category: "FRONT", items: "React, React Native, Angular" },
+		{ category: "LANG", items: "TypeScript, Python, SQL, C" },
+		{ category: "FRONT", items: "React, Tanstack, Angular" },
 		{ category: "BACK", items: "FastAPI, Flask, Node.js, Django" },
-		{ category: "DATA", items: "PostgreSQL, MySQL, Redis" },
-		{ category: "INFRA", items: "GCloud, Docker, Ansible, CF" },
+		{ category: "DATA", items: "PostgreSQL, Mongo, Redis" },
+		{ category: "INFRA", items: "GCloud, Docker, Ansible, Linux" },
 	];
 
 	return (
@@ -235,7 +236,7 @@ function ExperienceCell() {
 			highlights: [
 				"Multi-chain indexers and analytics services for NFT/token data",
 				"Flask/FastAPI backend on Google Cloud infrastructure",
-				"PostgreSQL, Redis, Docker Swarm, Cloudflare CDN stack",
+				"PostgreSQL, Redis, Docker Swarm, Gitlab, Cloudflare stack",
 			],
 		},
 		{

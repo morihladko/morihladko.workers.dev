@@ -1,12 +1,17 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 
 export default function Header() {
+	const location = useLocation();
+	const isHomePage = location.pathname === "/";
+
 	return (
 		<header className="border-b border-phosphor-dim">
 			<div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
 				<Link
 					to="/"
-					className="font-display text-lg tracking-widest text-glow hover:text-glow-lg transition-all"
+					className={`font-display text-lg tracking-widest transition-all ${
+						isHomePage ? "invisible" : "text-glow hover:text-glow-lg"
+					}`}
 				>
 					PETER MORIHLADKO
 				</Link>

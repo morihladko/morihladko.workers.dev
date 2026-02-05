@@ -164,3 +164,189 @@ a:hover {
 .animate-glow-pulse {
 	animation: glow-pulse 2s ease-in-out infinite;
 }
+
+.painted-emoji {
+  color: transparent;
+  background-color: var(--foreground);
+  background-clip: text;
+  -webkit-background-clip: text; /* Required for Safari/Chrome */
+}
+
+/* ===== PRINT STYLES - CV FORMAT ===== */
+@media print {
+	/* Reset colors for print */
+	:root {
+		--void-black: #ffffff;
+		--phosphor-amber: #000000;
+		--phosphor-amber-light: #000000;
+		--phosphor-amber-dim: #666666;
+		--phosphor-amber-glow: transparent;
+		--background: #ffffff;
+		--foreground: #000000;
+		--foreground-dim: #666666;
+		--foreground-bright: #000000;
+		--border: #cccccc;
+		--border-bright: #000000;
+	}
+
+	/* Base print styles */
+	* {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	html {
+		font-size: 11pt;
+	}
+
+	body {
+		background: white !important;
+		color: black !important;
+		font-size: 11pt;
+		line-height: 1.4;
+		max-width: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	/* Page setup */
+	@page {
+		size: A4;
+		margin: 1.5cm 2cm;
+	}
+
+	/* Typography adjustments */
+	h1 {
+		font-size: 18pt !important;
+		margin-bottom: 0.3cm !important;
+	}
+
+	h2 {
+		font-size: 11pt !important;
+		margin-bottom: 0.2cm !important;
+		border-bottom: 1px solid #cccccc;
+		padding-bottom: 0.1cm;
+	}
+
+	h3 {
+		font-size: 10pt !important;
+	}
+
+	/* Remove glow effects */
+	.text-glow,
+	.text-glow-md,
+	.text-glow-lg {
+		text-shadow: none !important;
+	}
+
+	.box-glow,
+	.box-glow-md,
+	.box-glow-lg {
+		box-shadow: none !important;
+	}
+
+	/* Remove bracket corners decorations */
+	.bracket-corners::before,
+	.bracket-corners::after,
+	.bracket-corners-dim::before,
+	.bracket-corners-dim::after {
+		display: none !important;
+	}
+
+	/* Hide header navigation */
+	header nav {
+		display: none !important;
+	}
+
+	/* Style header for print */
+	header {
+		border-bottom: 2px solid black !important;
+		margin-bottom: 0.5cm;
+		padding-bottom: 0.3cm !important;
+	}
+
+	header a {
+		font-size: 16pt !important;
+		color: black !important;
+	}
+
+	/* Main content adjustments */
+	main {
+		max-width: none !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+
+	/* Bento grid - linearize for print */
+	main > div {
+		display: block !important;
+		background: transparent !important;
+	}
+
+	main > div > div {
+		background: transparent !important;
+		padding: 0.3cm 0 !important;
+		margin-bottom: 0.3cm;
+		border: none !important;
+		page-break-inside: avoid;
+	}
+
+	/* Hide decorative elements */
+	.animate-pulse,
+	[class*="absolute"][class*="top-4"] {
+		display: none !important;
+	}
+
+	/* Skills - simplify progress bars */
+	.flex.gap-0\.5 > div {
+		background: #cccccc !important;
+		box-shadow: none !important;
+	}
+
+	.flex.gap-0\.5 > div.bg-phosphor {
+		background: #333333 !important;
+	}
+
+	/* Experience timeline - keep structure */
+	article.border-l {
+		border-left: 2px solid #333333 !important;
+		margin-left: 0.5cm;
+		padding-left: 0.3cm !important;
+	}
+
+	article.border-l span.absolute {
+		display: none !important;
+	}
+
+	/* Links - show URL for important links */
+	a[href^="http"]::after {
+		content: none;
+	}
+
+	/* Footer - minimal */
+	footer {
+		margin-top: 0.5cm !important;
+		padding-top: 0.3cm !important;
+		border-top: 1px solid #cccccc !important;
+		font-size: 9pt;
+	}
+
+	/* Stat blocks - simplify */
+	.border.border-phosphor-dim,
+	.border.border-phosphor {
+		border-color: #cccccc !important;
+	}
+
+	/* Ensure text is visible */
+	.text-phosphor-dim,
+	.text-phosphor,
+	.text-phosphor-light {
+		color: #333333 !important;
+	}
+
+	/* Hide status indicators */
+	.w-2.h-2,
+	.w-1\.5.h-1\.5 {
+		display: none !important;
+	}
+}
