@@ -1,6 +1,6 @@
 # morihladko.com
 
-Welcome to the source code of my personal website! Feel free to poke around, learn from it, or use it as inspiration for your own projects.
+Welcome to the source code of my personal website! Feel free to poke around, learn from it, or use it as inspiration for your own projects. Visit [morihladko.com](https://morihladko.com) to see the live site.
 
 ## Tech Stack
 
