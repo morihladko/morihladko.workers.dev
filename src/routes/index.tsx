@@ -86,12 +86,21 @@ function HeroCell() {
 			</p>
 
 			{/* Status indicator */}
-			<div className="mt-8 flex items-center gap-3 text-xs font-display">
-				<span className="w-2 h-2 bg-phosphor box-glow animate-pulse" />
-				<span className="text-phosphor-dim">STATUS: Open for collaboration</span>
-				<span className="painted-emoji bg-phosphor ml-4">🌐</span>
-				<span className="text-phosphor-dim">LOC: Prague</span>
-				<span className="text-phosphor-dim ml-4">AVAILABILITY: Globally</span>
+			<div className="mt-8 flex flex-col md:flex-row md:items-center gap-3 text-xs font-display">
+				<div className="flex items-center gap-3">
+					<span className="w-4 shrink-0 flex items-center justify-center">
+						<span className="w-2 h-2 bg-phosphor box-glow animate-pulse" />
+					</span>
+					<span className="text-phosphor-dim">STATUS: Open for collaboration</span>
+				</div>
+				<div className="flex items-center gap-3">
+					<span className="w-4 shrink-0 flex justify-center painted-emoji bg-phosphor">🌐</span>
+					<span className="text-phosphor-dim">LOC: Prague</span>
+				</div>
+				<div className="flex items-center gap-3">
+					<span className="w-4 shrink-0 flex justify-center painted-emoji bg-phosphor">⚡</span>
+					<span className="text-phosphor-dim">AVAILABILITY: Globally</span>
+				</div>
 			</div>
 		</BentoCell>
 	);
@@ -231,11 +240,15 @@ function VideoCell() {
 	return (
 		<BentoCell className="flex items-center justify-center p-0 overflow-hidden">
 			<video
-				className="w-full h-full object-cover sepia brightness-[0.8] hue-rotate-[10deg] saturate-[3]"
+				className="w-full h-full object-cover cursor-pointer"
 				autoPlay
 				muted
 				loop
 				playsInline
+				onClick={(e) => {
+					const v = e.currentTarget;
+					v.paused ? v.play() : v.pause();
+				}}
 			>
 				<source src="/doom.webm" type="video/webm" />
 				<source src="/doom.mp4" type="video/mp4" />

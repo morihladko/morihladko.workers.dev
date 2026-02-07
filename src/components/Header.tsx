@@ -17,7 +17,7 @@ export default function Header() {
 				</Link>
 
 				<nav>
-					<ul className="flex flex-wrap gap-1 list-none m-0 p-0 [&>li:first-child>a]:pl-0">
+					<ul className="flex flex-wrap list-none m-0 p-0 -ml-1 md:-ml-4">
 						<NavItem href="https://github.com/morihladko" label="GITHUB" />
 						<NavItem
 							href="https://linkedin.com/in/morihladko"
@@ -36,7 +36,7 @@ function NavItem({ href, label }: { href: string; label: string }) {
 		<li>
 			<a
 				href={href}
-				className="block px-2 md:px-4 py-2 font-display text-xs tracking-wider border border-transparent hover:border-phosphor-dim hover:text-glow transition-all"
+				className="block px-1 md:px-4 py-2 font-display text-xs tracking-wider border border-transparent hover:border-phosphor-dim hover:text-glow transition-all"
 			>
 				[ {label} ]
 			</a>
