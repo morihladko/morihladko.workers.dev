@@ -12,6 +12,7 @@ function HomePage() {
 				<StatsCell />
 				<SkillsCell />
 				<TechStackCell />
+				<VideoCell />
 				<ExperienceCell />
 			</div>
 
@@ -220,6 +221,25 @@ function TechStackCell() {
 					</div>
 				))}
 			</div>
+		</BentoCell>
+	);
+}
+
+/* ===== VIDEO CELL ===== */
+
+function VideoCell() {
+	return (
+		<BentoCell className="flex items-center justify-center p-0 overflow-hidden">
+			<video
+				className="w-full h-full object-cover sepia brightness-[0.8] hue-rotate-[10deg] saturate-[3]"
+				autoPlay
+				muted
+				loop
+				playsInline
+			>
+				<source src="/doom.webm" type="video/webm" />
+				<source src="/doom.mp4" type="video/mp4" />
+			</video>
 		</BentoCell>
 	);
 }
